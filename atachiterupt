@@ -1,0 +1,69 @@
+const int Bleva = 2;
+const int Bprava = 3;
+int stav = 3;
+void setup()
+{
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(13, OUTPUT);
+
+  pinMode(Bleva, INPUT);
+  pinMode(Bprava, INPUT);
+
+  attachInterrupt(digitalPinToInterrupt(Bleva), leva, RISING);
+  attachInterrupt(digitalPinToInterrupt(Bprava), prava, RISING);
+}
+
+void loop()
+{ /*
+  if (digitalRead(Bleva) == HIGH)
+  {
+    stav--;
+    delay(250);
+  }
+  if (digitalRead(Bprava) == HIGH)
+  {
+    stav++;
+    delay(250);
+  }
+  if (stav <1)
+  {
+    stav = 1;
+  }
+  if (stav >5)
+  {
+    stav = 5;
+  }
+  */
+
+  if (stav == 1)
+    LEDBlik(9);
+  else if (stav == 2)
+    LEDBlik(10);
+  else if (stav == 3)
+    LEDBlik(11);
+  else if (stav == 4)
+    LEDBlik(12);
+  else if (stav == 5)
+    LEDBlik(13);
+}
+
+void LEDBlik(int pin)
+{
+  digitalWrite(pin, HIGH);
+  delay(200);
+  digitalWrite(pin, LOW);
+  delay(200);
+}
+
+void leva()
+{
+  stav--;
+}
+
+void prava()
+{
+  stav++;
+}
