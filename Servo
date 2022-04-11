@@ -1,0 +1,136 @@
+#include <Servo.h>
+
+Servo Ser;
+const int ser = 8;
+int poloha;
+
+const int in1 = 16;
+const int in2 = 17;
+const int in3 = 18;
+const int in4 = 19;
+
+const int joystick_X = A1;
+const int joystick_Y = A0;
+const int joystick_B = 12;
+int x, y, b;
+
+int pocet = 0;
+int intenzitax = 0;
+int intenzitay = 0;
+
+void setup() 
+{
+Ser.attach(ser);
+Ser.write(0);
+
+pinMode(in1, OUTPUT);
+pinMode(in2, OUTPUT);
+pinMode(in3, OUTPUT);
+pinMode(in4, OUTPUT);
+
+Serial.begin(9600);
+
+pinMode(joystick_X, INPUT);
+pinMode(joystick_Y, INPUT);
+pinMode(joystick_B, INPUT_PULLUP);
+
+Serial.println("test");
+
+pinMode(3, OUTPUT);
+pinMode(5, OUTPUT);
+pinMode(11, OUTPUT);
+}
+
+void loop() 
+{  
+x = analogRead(joystick_X);
+y = analogRead(joystick_Y);
+b = digitalRead(joystick_B);
+
+Serial.print("X = ");
+Serial.print(x);
+Serial.print(" , Y = ");
+Serial.print(y);
+Serial.print(" , B = ");
+Serial.print(b);
+Serial.print(" , pocet = ");
+Serial.print(pocet);
+Serial.print(" , r = ");
+Serial.println(intenzitax);
+
+
+if (x < 450)
+  {
+   protismer();
+   intenzitax +=2;
+  }
+
+if (x > 600)
+  {
+   smer();
+   intenzitax -=2;
+  }
+
+if (y < 450)
+  {
+   poloha += 2; 
+   Ser.write(poloha);
+   intenzitay -=2;
+  }
+
+if (y > 600)
+  {
+   poloha -= 2;
+   Ser.write(poloha);
+   intenzitay +=2;
+  }
+
+b = !b;
+if (b = 0)
+  {
+   pocet +=1;
+   delay(200);
+   if (pocet = 12)
+  {
+   pocet = 3;
+  }
+  }
+
+analogWrite (pocet, intenzitax);
+
+
+delay(10);
+}
+
+void krok(int a, int b, int c, int d)
+{
+digitalWrite(in1, a);
+digitalWrite(in2, b);
+digitalWrite(in3, c);
+digitalWrite(in4, d);
+delay (10);
+}
+
+void protismer() 
+{
+krok (0, 0, 0, 0);
+krok (0, 0, 0, 1);
+krok (0, 0, 1, 1);
+krok (0, 0, 1, 0);
+krok (0, 1, 1, 0);
+krok (0, 1, 0, 0);
+krok (1, 1, 0, 0);
+krok (1, 0, 0, 0);
+}
+
+void smer() 
+{
+krok (0, 0, 0, 0);
+krok (1, 0, 0, 0);
+krok (1, 1, 0, 0);
+krok (0, 1, 0, 0);
+krok (0, 1, 1, 0);
+krok (0, 0, 1, 0);
+krok (0, 0, 1, 1);
+krok (0, 0, 0, 1);
+}
