@@ -1,0 +1,83 @@
+#include <LiquidCrystal.h>
+
+const int rs = 12;
+const int enable = 11;
+const int d4 = 4;
+const int d5 = 5;
+const int d6 = 6;
+const int d7 = 7;
+
+LiquidCrystal LCD (rs, enable, d4, d5, d6, d7);
+
+const int Joystick_X = A1;
+const int Joystick_Y = A0;
+const int Joystick_SW = 8;
+
+int x,y,b;
+
+void setup() 
+{
+  LCD.begin(16, 2);
+  
+  Serial.begin(9600);
+  pinMode(Joystick_X, INPUT);
+  pinMode(Joystick_Y, INPUT);
+  pinMode(Joystick_SW, INPUT_PULLUP);
+}
+
+void loop() 
+{
+  /*LCD.setCursor(0, 0);
+  LCD.print("X=      Y=      ");
+
+  LCD.setCursor(3, 0);
+  LCD.print(x);
+  LCD.setCursor(11, 0);
+  LCD.print(y);
+  LCD.setCursor(0, 1);
+  LCD.print("Button= ");
+  LCD.print(b);*/
+
+  if (x <450)
+  {
+    LCD.setCursor(0, 0);
+    LCD.print("Vpravo   ");
+  }
+  else if (x >600)
+  {
+    LCD.setCursor(0, 0);
+    LCD.print("Vlevo   ");
+  }
+  else
+  {
+    LCD.setCursor(0, 0);
+    LCD.print("Mid     ");
+  }
+  if (y <450)
+  {
+    LCD.setCursor(0, 1);
+    LCD.print("Dolu   ");
+  }
+  else if (y >600)
+  {
+    LCD.setCursor(0, 1);
+    LCD.print("Nahoru   ");
+  }
+  else
+  {
+    LCD.setCursor(0, 1);
+    LCD.print("Mid     ");
+  }
+  
+  x = analogRead(A1);
+  y = analogRead(A0);
+  b = digitalRead(8);
+
+  Serial.print("X = ");
+  Serial.print(x);
+  Serial.print(" Y = ");
+  Serial.print(y);
+  Serial.print(" B = ");
+  Serial.println(b);
+
+}
