@@ -1,0 +1,234 @@
+int cp = 19;
+int zp = 18;
+
+int c3 = 14;
+int c1 = 3;
+int c2 = 4;
+int o3 = 5;
+int o1 = 6;
+int o2 = 7;
+int z3 = 8;
+int z1 = 9;
+int z2 = 10;
+int m3 = 11;
+int m1 = 12;
+int m2 = 13;
+
+bool hod = 0;
+
+void setup()  
+{
+pinMode(19, OUTPUT);
+pinMode(18, OUTPUT);
+
+pinMode(14, OUTPUT);
+pinMode(3, OUTPUT);
+pinMode(4, OUTPUT);
+pinMode(5, OUTPUT);
+pinMode(6, OUTPUT);
+pinMode(7, OUTPUT);
+pinMode(8, OUTPUT);
+pinMode(9, OUTPUT);
+pinMode(10, OUTPUT);
+pinMode(11, OUTPUT);
+pinMode(12, OUTPUT);
+pinMode(13, OUTPUT);
+
+Serial.begin(9600);
+pinMode(2, INPUT);
+attachInterrupt(digitalPinToInterrupt(2), zmena, RISING);
+}
+
+void loop()
+{
+  Serial.println(hod);
+  celek1();
+  if (hod == 1)
+  {prechod();}
+  Serial.println(hod);
+  celek2();
+  if (hod == 1)
+  {prechod();}
+  Serial.println(hod);
+  celek3();
+  if (hod == 1)
+  {prechod();}
+
+}
+
+void prechod()
+{
+  digitalWrite(c1, HIGH);
+  digitalWrite(c2, HIGH);
+  digitalWrite(c3, HIGH);
+  delay(1000);
+  digitalWrite(zp, HIGH);
+  digitalWrite(cp, LOW);
+  delay(5000);
+  digitalWrite(zp, LOW);
+  digitalWrite(cp, HIGH);
+  hod = 0;
+}
+
+void zmena()
+{
+  hod = 1;
+}
+
+void celek1() 
+{
+digitalWrite(cp, HIGH);
+digitalWrite(zp, LOW);
+//
+digitalWrite(c1, HIGH);
+digitalWrite(c2, HIGH);
+digitalWrite(c3, HIGH);
+digitalWrite(m3, HIGH);
+delay(2000);
+digitalWrite(c1, LOW);
+digitalWrite(c2, LOW);
+digitalWrite(c3, LOW);
+digitalWrite(m3, LOW);
+//
+digitalWrite(c1, HIGH);
+digitalWrite(o1, HIGH);
+digitalWrite(c2, HIGH);
+digitalWrite(c3, HIGH);
+digitalWrite(m3, HIGH);
+delay(2000);
+digitalWrite(c1, LOW);
+digitalWrite(o1, LOW);
+digitalWrite(c2, LOW);
+digitalWrite(c3, LOW);
+digitalWrite(m3, LOW);
+//
+digitalWrite(z1, HIGH);
+digitalWrite(m1, HIGH);
+digitalWrite(c2, HIGH);
+digitalWrite(c3, HIGH);
+digitalWrite(m3, HIGH);
+delay(5000);
+digitalWrite(z1, LOW);
+digitalWrite(m1, LOW);
+digitalWrite(c2, LOW);
+digitalWrite(c3, LOW);
+digitalWrite(m3, LOW);
+//
+digitalWrite(o1, HIGH);
+digitalWrite(m1, HIGH);
+digitalWrite(c2, HIGH);
+digitalWrite(c3, HIGH);
+delay(2000);
+digitalWrite(o1, LOW);
+digitalWrite(m1, LOW);
+digitalWrite(c2, LOW);
+digitalWrite(c3, LOW);
+//
+digitalWrite(c1, HIGH);
+digitalWrite(m1, HIGH);
+digitalWrite(c2, HIGH);
+digitalWrite(c3, HIGH);
+delay(2000);
+digitalWrite(c1, LOW);
+digitalWrite(m1, LOW);
+digitalWrite(c2, LOW);
+digitalWrite(c3, LOW);
+}
+void celek2()
+{
+digitalWrite(cp, HIGH);
+digitalWrite(zp, LOW);
+//
+digitalWrite(c1, HIGH);
+digitalWrite(m1, HIGH);
+digitalWrite(c2, HIGH);
+digitalWrite(o2, HIGH);
+digitalWrite(c3, HIGH);
+delay(2000);
+digitalWrite(c1, LOW);
+digitalWrite(m1, LOW);
+digitalWrite(c2, LOW);
+digitalWrite(o2, LOW);
+digitalWrite(c3, LOW);
+//
+digitalWrite(c1, HIGH);
+digitalWrite(m1, HIGH);
+digitalWrite(z2, HIGH);
+digitalWrite(m2, HIGH);
+digitalWrite(c3, HIGH);
+delay(5000);
+digitalWrite(c1, LOW);
+digitalWrite(m1, LOW);
+digitalWrite(z2, LOW);
+digitalWrite(m2, LOW);
+digitalWrite(c3, LOW);
+//
+digitalWrite(c1, HIGH);
+digitalWrite(o2, HIGH);
+digitalWrite(m2, HIGH);
+digitalWrite(c3, HIGH);
+delay(2000);
+digitalWrite(c1, LOW);
+digitalWrite(o2, LOW);
+digitalWrite(m2, LOW);
+digitalWrite(c3, LOW);
+//
+digitalWrite(c1, HIGH);
+digitalWrite(c2, HIGH);
+digitalWrite(m2, HIGH);
+digitalWrite(c3, HIGH);
+delay(2000);
+digitalWrite(c1, LOW);
+digitalWrite(c2, LOW);
+digitalWrite(m2, LOW);
+digitalWrite(c3, LOW);
+}
+void celek3()
+{
+digitalWrite(cp, HIGH);
+digitalWrite(zp, LOW);
+//
+digitalWrite(c1, HIGH);
+digitalWrite(c2, HIGH);
+digitalWrite(m2, HIGH);
+digitalWrite(c3, HIGH);
+digitalWrite(o3, HIGH);
+delay(2000);
+digitalWrite(c1, LOW);
+digitalWrite(c2, LOW);
+digitalWrite(m2, LOW);
+digitalWrite(c3, LOW);
+digitalWrite(o3, LOW);
+//
+digitalWrite(c1, HIGH);
+digitalWrite(c2, HIGH);
+digitalWrite(m2, HIGH);
+digitalWrite(z3, HIGH);
+digitalWrite(m3, HIGH);
+delay(5000);
+digitalWrite(c1, LOW);
+digitalWrite(c2, LOW);
+digitalWrite(m2, LOW);
+digitalWrite(z3, LOW);
+digitalWrite(m3, LOW);
+//
+digitalWrite(c1, HIGH);
+digitalWrite(c2, HIGH);
+digitalWrite(o3, HIGH);
+digitalWrite(m3, HIGH);
+delay(2000);
+digitalWrite(c1, LOW);
+digitalWrite(c2, LOW);
+digitalWrite(o3, LOW);
+digitalWrite(m3, LOW);
+//
+digitalWrite(c1, HIGH);
+digitalWrite(c2, HIGH);
+digitalWrite(c3, HIGH);
+digitalWrite(m3, HIGH);
+delay(2000);
+digitalWrite(c1, LOW);
+digitalWrite(c2, LOW);
+digitalWrite(c3, LOW);
+digitalWrite(m3, LOW);
+}
