@@ -1,0 +1,173 @@
+const int r[] = {9, 4, 17, 6, 10, 16, 11, 14};
+const int s[] = {5, 12, 13, 8, 15, 7, 3, 2};
+
+int pozice = 0;
+
+int napis [8][32] =
+{
+  {0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  {0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+};
+/*
+  const int s1 = 5;
+  const int s2 = 12;
+  const int s3 = 13;
+  const int s4 = 8;
+  const int s5 = 15;
+  const int s6 = 7;
+  const int s7 = 3;
+  const int s8 = 2;
+
+  const int r1 = 9;
+  const int r2 = 4;
+  const int r3 = 17;
+  const int r4 = 6;
+  const int r5 = 10;
+  const int r6 = 16;
+  const int r7 = 11;
+  const int r8 = 14;
+*/
+void setup()
+{
+
+  for (int i = 0; i < 8; i++)
+  {
+    pinMode(r[i], OUTPUT);
+    pinMode(s[i], OUTPUT);
+    digitalWrite(r[i], LOW);
+    digitalWrite(s[i], HIGH);
+  }
+
+  /*
+    pinMode(2, OUTPUT);
+    pinMode(3, OUTPUT);
+    pinMode(4, OUTPUT);
+    pinMode(5, OUTPUT);
+    pinMode(6, OUTPUT);
+    pinMode(7, OUTPUT);
+    pinMode(8, OUTPUT);
+    pinMode(9, OUTPUT);
+
+    pinMode(10, OUTPUT);
+    pinMode(11, OUTPUT);
+    pinMode(12, OUTPUT);
+    pinMode(13, OUTPUT);
+    pinMode(14, OUTPUT);
+    pinMode(15, OUTPUT);
+    pinMode(16, OUTPUT);
+    pinMode(17, OUTPUT);
+  */
+}
+
+void loop()
+{
+  for (int x = 0; x < 100; x++)
+  {
+    for (int i = 0; i < 8; i++)
+    {
+      digitalWrite(s[i], LOW);
+      for (int j = 0; j < 8; j++)
+      {
+        digitalWrite(r[j], napis[j][(i + pozice) - abs((i + pozice) / 32) * 32]);
+      }
+      for (int j = 0; j < 8; j++)
+      {
+        digitalWrite(r[j], LOW);
+      }
+      digitalWrite(s[i], HIGH);
+    }
+  }
+  pozice ++;
+  /*
+    digitalWrite(s1, HIGH);
+    digitalWrite(s2, HIGH);
+    digitalWrite(s3, HIGH);
+    digitalWrite(s4, HIGH);
+    digitalWrite(s5, HIGH);
+    digitalWrite(s6, HIGH);
+    digitalWrite(s7, HIGH);
+    digitalWrite(s8, HIGH);
+    digitalWrite(r1, LOW);
+    digitalWrite(r2, LOW);
+    digitalWrite(r3, LOW);
+    digitalWrite(r4, LOW);
+    digitalWrite(r5, LOW);
+    digitalWrite(r6, LOW);
+    digitalWrite(r7, LOW);
+    digitalWrite(r8, LOW);
+
+    digitalWrite(s1, LOW);
+    digitalWrite(s2, HIGH);
+    digitalWrite(s3, HIGH);
+    digitalWrite(s4, HIGH);
+    digitalWrite(s5, HIGH);
+    digitalWrite(s6, HIGH);
+    digitalWrite(s7, HIGH);
+    digitalWrite(s8, LOW);
+    digitalWrite(r1, HIGH);
+    digitalWrite(r2, HIGH);
+    digitalWrite(r3, HIGH);
+    digitalWrite(r4, HIGH);
+    digitalWrite(r5, HIGH);
+    digitalWrite(r6, HIGH);
+    digitalWrite(r7, HIGH);
+    digitalWrite(r8, HIGH);
+    delay(1);
+    digitalWrite(s1, HIGH);
+    digitalWrite(s2, HIGH);
+    digitalWrite(s3, HIGH);
+    digitalWrite(s4, HIGH);
+    digitalWrite(s5, HIGH);
+    digitalWrite(s6, HIGH);
+    digitalWrite(s7, HIGH);
+    digitalWrite(s8, HIGH);
+    digitalWrite(r1, LOW);
+    digitalWrite(r2, LOW);
+    digitalWrite(r3, LOW);
+    digitalWrite(r4, LOW);
+    digitalWrite(r5, LOW);
+    digitalWrite(r6, LOW);
+    digitalWrite(r7, LOW);
+    digitalWrite(r8, LOW);
+    delay(1);
+    digitalWrite(s1, LOW);
+    digitalWrite(s2, LOW);
+    digitalWrite(s3, LOW);
+    digitalWrite(s4, LOW);
+    digitalWrite(s5, LOW);
+    digitalWrite(s6, LOW);
+    digitalWrite(s7, LOW);
+    digitalWrite(s8, LOW);
+    digitalWrite(r1, HIGH);
+    digitalWrite(r2, LOW);
+    digitalWrite(r3, LOW);
+    digitalWrite(r4, LOW);
+    digitalWrite(r5, LOW);
+    digitalWrite(r6, LOW);
+    digitalWrite(r7, LOW);
+    digitalWrite(r8, HIGH);
+    delay(1);
+    digitalWrite(s1, HIGH);
+    digitalWrite(s2, HIGH);
+    digitalWrite(s3, HIGH);
+    digitalWrite(s4, HIGH);
+    digitalWrite(s5, HIGH);
+    digitalWrite(s6, HIGH);
+    digitalWrite(s7, HIGH);
+    digitalWrite(s8, HIGH);
+    digitalWrite(r1, LOW);
+    digitalWrite(r2, LOW);
+    digitalWrite(r3, LOW);
+    digitalWrite(r4, LOW);
+    digitalWrite(r5, LOW);
+    digitalWrite(r6, LOW);
+    digitalWrite(r7, LOW);
+    digitalWrite(r8, LOW);
+    delay(1);*/
+}
