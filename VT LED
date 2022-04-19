@@ -1,0 +1,27 @@
+#define LED4  10  // LED na pinu 10
+#define LED3  11 
+#define LED2  12 
+#define LED1  13 
+
+void setup()
+{
+pinMode(LED1, OUTPUT);           // nastaveni vystupu na pinu 10
+pinMode(LED2, OUTPUT);
+pinMode(LED3, OUTPUT);
+pinMode(LED4, OUTPUT);
+}
+
+void loop()
+{
+digitalWrite(LED1, LOW);           // rozsvit LED 1, na vystup 10 posilame 0
+digitalWrite(LED2, LOW);
+digitalWrite(LED3, HIGH); 
+digitalWrite(LED4, HIGH); 
+delay(1000);                            // cekej 1s
+
+digitalWrite(LED1, HIGH);          // zhasni LED 1, na vystup 10 posilame 1
+digitalWrite(LED2, HIGH); 
+digitalWrite(LED3, LOW);
+digitalWrite(LED4, LOW);
+delay(1000);                            // cekej 1s
+}
