@@ -1,0 +1,4 @@
+            Graphics plocha = e.Graphics;
+            plocha.DrawLine(Pens.CadetBlue, 0, 0, 100, 0);        
+            plocha.FillEllipse(Brushes.Red, 50, 50, 100, 100);
+            plocha.DrawRectangle(Pens.Blue, 0, 0, 300, 200);
